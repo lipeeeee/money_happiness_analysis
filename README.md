@@ -49,7 +49,7 @@ y = np.c_[country_stats["Life satisfaction"]]
 This code reads in the two CSV files containing the BLI and GDP per capita data, respectively. It then calls the prepare_country_stats function to clean and merge the datasets, sort them by GDP per capita, and select only the countries we are interested in. The resulting DataFrame, country_stats, contains the GDP per capita and life satisfaction columns, which we store as NumPy arrays x and y, respectively.
 
 ### Plotting Data
-![alt text](https://raw.githubusercontent.com/lipeeeee/money_happiness_study/master/data/data_plot.png?token=GHSAT0AAAAAAB4GNSK223GM6HIGBTD376GSY7SKY3Q)
+![alt text](https://raw.githubusercontent.com/lipeeeee/money_happiness_analysis/master/data/data_plot.png?token=GHSAT0AAAAAAB4GNSK3GWID5TTXZJHQ6ZQUY7SLEHA)
 
 This plot indicates that there might be a correlation between GDP per capita and Life satisfaction since the higher GPD goes the higher Life satisfaction increases.
 

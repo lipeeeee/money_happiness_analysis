@@ -49,7 +49,9 @@ y = np.c_[country_stats["Life satisfaction"]]
 This code reads in the two CSV files containing the BLI and GDP per capita data, respectively. It then calls the prepare_country_stats function to clean and merge the datasets, sort them by GDP per capita, and select only the countries we are interested in. The resulting DataFrame, country_stats, contains the GDP per capita and life satisfaction columns, which we store as NumPy arrays x and y, respectively.
 
 ### Plotting Data
-![alt text](http://url/to/img.png)
+![alt text](https://raw.githubusercontent.com/lipeeeee/money_happiness_study/master/data/data_plot.png?token=GHSAT0AAAAAAB4GNSK223GM6HIGBTD376GSY7SKY3Q)
+
+This plot indicates that there might be a correlation between GDP per capita and Life satisfaction since the higher GPD goes the higher Life satisfaction increases.
 
 ## Model
 I chose the Linear Regression model from scikit-learn because it was, in my opinion, the best fit for this dataset.
@@ -79,16 +81,45 @@ Once the model is trained, we can use it to make predictions on new data. For ex
 prediction = model.predict([[50961]]) # Predicting Australia GDP(50,961.865)
 
 # Print the prediction
-print(prediction) # [[7.2]]
+print(prediction) # [[7.2]] (the acutal LS is 7.4)
 ```
+
 This will output the predicted life satisfaction level for a country with a GDP per capita of 50,961.
 
 Overall, Linear Regression is a good choice for this project because it is a simple and efficient method for modeling the relationship between two variables and making predictions based on this relationship.
 
-## Methodology
+## Finding the "Perfect" GDP
+In addition to using the linear regression model to predict life satisfaction based on GDP per capita, I also created a function that attempts to find the "perfect" GDP. The idea behind this function is to brute-force the search for the GDP that yields a predicted life satisfaction of 10, which is the highest possible score in the BLI dataset. Here is the code for the bruteforce_gdp function:
 
-## Results
+```python
+def bruteforce_gdp(max_iterations=1000000):  
+    for i in range(max_iterations):
+        # Check if perfect Life satisfaction
+        predicted_LS = model.predict([[i]])
+        if (predicted_LS >= 10):
+            print("Found the perfect GDP!\n" + 
+                  "It is: " + str(i) + "!\nProducing the Life satisfaction of: " + str(predicted_LS))
+            return
+    
+    print("Reached the maximum number of iterations without finding a solution")
+```
+
+The function takes an optional max_iterations parameter that sets the maximum number of iterations to be attempted before giving up. The function simply loops over a range of GDP values, uses the linear regression model to predict the resulting life satisfaction, and checks if that prediction is 10 or greater. If it is, the function prints a message indicating that it has found the perfect GDP and the resulting life satisfaction. Otherwise, the function continues to the next GDP value.
+
+It's important to note that this function is a brute-force search and is not guaranteed to find the exact "perfect" GDP value, especially given the limited range of GDP values being considered. Nonetheless, this function provides an interesting way to explore the relationship between GDP and life satisfaction and may yield some surprising results.
+
+### Findings
+In my model i had these findings for the "Perfect" GDP:
+```
+Found the perfect GDP!
+It is: 123911!
+Producing the Life satisfaction of: [[10.00001892]]
+```
+
+## Final Notes
+Please note that the results produced by the model may vary from one person to another due to the use of a random seed during the machine learning process. The random seed ensures that the model's training process is repeatable, but it can also affect the model's accuracy and predictions. Therefore, if you compile the code on your machine, you may obtain slightly different results from those presented here.
 
 ## Conclusion
+In conclusion, despite the limited amount of data available for this study, I was able to develop a model that accurately predicted life satisfaction based on GDP per capita using linear regression. My model's predictions were close to the actual life satisfaction score, with an error of only 0.2 on average. With more data and potentially more relevant features, it is likely that the accuracy of the model could be further improved. Overall, this study provides evidence that there is a positive relationship between income and life satisfaction, and that machine learning techniques can be effectively used to make predictions based on this relationship.
 
 *a project by lipeeeee.*

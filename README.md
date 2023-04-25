@@ -9,7 +9,7 @@
 <!-- [![Windows](https://img.shields.io/badge/Platform-Windows-0078d7.svg?style=for-the-badge)](https://en.wikipedia.org/wiki/Microsoft_Windows) -->
 <!-- [![License](https://img.shields.io/github/license/R3nzTheCodeGOD/R3nzSkin.svg?style=for-the-badge)](LICENSE) -->
 
-# Money and Happiness Data Analysis
+# Machine Learning Money and Happiness Data Analysis
 </div>
 
 ## Introduction
